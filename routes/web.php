@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +33,7 @@ require __DIR__.'/auth.php';
 //Route::get('/posts', [PostController::class, 'index']);
 Route::resource('posts', PostController::class);
 //Route::get('/projects', [ProjectController::class, 'index']);
-Route::get('projects', ProjectController::class);
+Route::resource('projects', ProjectController::class);
 
 
 Route::middleware(['auth', 'verified'])
