@@ -19,6 +19,11 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+
+                <div class="card-footer">
+                    <a href="{{route('admin.projects.index')}}">Go to your projects</a>
+                </div>
+
             </div>
         </div>
     </div>
