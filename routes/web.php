@@ -21,28 +21,20 @@ Route::get('/', function () {
 });
 
 
+Route::middleware(['auth', 'verified'])
+->name('admin.')
+->prefix('admin')
+->group(function () {
+    
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('projects', ProjectController::class);
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
 require __DIR__.'/auth.php';
-
-
-Route::resource('projects', ProjectController::class);
-
-
-
-Route::middleware(['auth', 'verified'])
-->name('admin.')
-->prefix('admin')
-->group(function () {
-    // All routes need to share a common name and prefix and the middleware
-    // 👇
-    // Put here all routes that needs to be protected by our authenticatio system
-    
-    Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-
-    });
-
